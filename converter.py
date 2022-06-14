@@ -4,10 +4,11 @@ import csv
 import pandas as pd
 from pandas.io.json import json_normalize
 import json
+import api
 
 #converter script
-url = f"https://sandbox.iexapis.com/stable/stock/{'TSLA'}/chart/5y/?token=Tpk_059b97af715d417d9f49f50b51b1c448"
-data_json = requests.get(url).json()
+api_key = api.read()
+data_json = requests.get(api_key).json()
 raw_df = pd.DataFrame(data_json)
 #might need try / except blocks but you can check online for advice on converters
 #the difficult thing will be finding dates / times and the one metric you care about in the timeseries, then making it into a 2 column df
