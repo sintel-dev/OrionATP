@@ -20,6 +20,7 @@ standardized_time = raw_df[["close","date"]] #remember that datetime needs to be
 standardized_time["datetime"] = standardized_time["date"].apply(lambda x: datetime.strptime(x, "%Y-%m-%d"))
 standardized_time["datetime"] = pd.to_timedelta(standardized_time["datetime"])
 standardized_time["datetime"] = standardized_time["datetime"].dt.total_seconds()
+
 final_df = pd.DataFrame({"timestamp":standardized_time["datetime"], "value": standardized_time["close"]}) #this line will need to be edited to change datetime and close, but is important
 
 #lastly the final dataframe needs to be sent to trainer.py to train the model

@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as plt
+import streamlit.components.v1 as components
 from converter import final_df
 from trainer import anomalydata
 
