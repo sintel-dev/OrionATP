@@ -1,0 +1,8 @@
+{
+    'mlprimitives.custom.timeseries_preprocessing.time_segments_aggregate#1': {
+        'interval': 43200 #changing time interval drastically affects anomaly detection. currently using half-day intervals.
+    },
+    "statsmodels.tsa.arima_model.Arima#1": {
+            "steps": 1
+    }
+}
