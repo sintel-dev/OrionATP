@@ -8,19 +8,31 @@ import json
 #converter script
 api = open("api.txt", "r")
 api_key = api.readline()
-data_json = requests.get(api_key).json()
-raw_df = pd.DataFrame(data_json)
-time = api.readline() #read from the api file, time will be first a string representation of the name of the "time" column in the API call
-value = api.readline() #read from the api file, value will be first a string representation of the name of the "value" column in the API call
 
+try: #check if api response is a json
+    raw_df = pd.read_json(api_key)
+except:
+    print("File not in json format")
+    try:
+        raw_df = pd.read_csv(api_key)
+    except:
+        pass
+    else:
+        raw_df = pd.read_csv(api_key)
+else:
+    raw_df = pd.read_json(api_key)
+
+time = api.readline().strip() #read from the api file, time will be first a string representation of the name of the "time" column in the API call
+value = api.readline().strip() #read from the api file, value will be first a string representation of the name of the "value" column in the API call
+print(time, value, raw_df)
 #might need try / except blocks but you can check online for advice on converters
 #the difficult thing will be finding dates / times and the one metric you care about in the timeseries, then making it into a 2 column df
 
-standardized_time = raw_df[["close","date"]] #remember that datetime needs to be changed to a variable that represents the time column
-standardized_time["datetime"] = standardized_time["date"].apply(lambda x: datetime.strptime(x, "%Y-%m-%d"))
-standardized_time["datetime"] = pd.to_timedelta(standardized_time["datetime"])
-standardized_time["datetime"] = standardized_time["datetime"].dt.total_seconds()
+standardized_time = raw_df[[value,time]] #remember that datetime needs to be changed to a variable that represents the time column
+#standardized_time["datetime"] = standardized_time[time].apply(lambda x: datetime.strptime(x, "%Y-%m-%d"))
+standardized_time[time] = pd.to_timedelta(standardized_time[time])
+standardized_time[time] = standardized_time[time].dt.total_seconds()
 
-final_df = pd.DataFrame({"timestamp":standardized_time["datetime"], "value": standardized_time["close"]}) #this line will need to be edited to change datetime and close, but is important
-
+final_df = pd.DataFrame({"timestamp":standardized_time[time], "value": standardized_time[value]}) #this line will need to be edited to change datetime and close, but is important
+print(final_df)
 #lastly the final dataframe needs to be sent to trainer.py to train the model

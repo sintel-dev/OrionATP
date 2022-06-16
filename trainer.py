@@ -3,14 +3,9 @@ from orion import Orion
 from converter import final_df
 
 #trainer
-hp = {
-    'mlprimitives.custom.timeseries_preprocessing.time_segments_aggregate#1': {
-        'interval': 43200 #changing time interval drastically affects anomaly detection. currently using half-day intervals.
-    },
-    "statsmodels.tsa.arima_model.Arima#1": {
-            "steps": 1
-    }
-}
+json_hyperparameters = open("hyperparameters.json", "r")
+hp = json.load(json_hyperparameters)
+
 orion_model = Orion(pipeline="ARIMA", hyperparameters = hp)
 detected_anomalies = orion_model.fit_detect(final_df)
 
