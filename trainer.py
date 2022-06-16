@@ -11,7 +11,7 @@ pipeline = json.load(json_pipeline)
 json_hyperparameters = open("hyperparameters.json", "r")
 hp = json.load(json_hyperparameters)
 
-orion_model = Orion(pipeline="ARIMA", hyperparameters = hp)
+orion_model = Orion(pipeline=pipeline, hyperparameters = hp)
 detected_anomalies = orion_model.fit_detect(final_df)
 
 anomalydata = pd.DataFrame(columns = ["timestamp", "value"])
