@@ -5,6 +5,9 @@ from converter import final_df
 
 
 #trainer
+json_pipeline = open("pipeline.json", "r")
+pipeline = json.load(json_pipeline)
+
 json_hyperparameters = open("hyperparameters.json", "r")
 hp = json.load(json_hyperparameters)
 
