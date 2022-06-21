@@ -1,4 +1,3 @@
-from tkinter import BOTH
 import requests
 from datetime import datetime
 import csv
