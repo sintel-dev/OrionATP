@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import plotly.express as plt
 import streamlit.components.v1 as components
 from converter import final_df
+from converter import selected
 from trainer import detected_anomalies
 from trainer import anomalydata
 
@@ -20,6 +21,7 @@ fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'],
 #fig.show() #graph figure with discrete anomalies highlighted in red
 st.header("Building the Pipeline")
 st.markdown("I'm not entirely sure, but I think Orion requires the data to be formatted in a very specific way, with the two columns of the dataframe being labelled 'timestamp' and 'value.' I set up the data as such, then build a pipeline that doesn't vary much from the default ARIMA pipeline that's preprogrammed into the Orion library.")
+st.dataframe(selected)
 
 st.header("Detecting Anomalies")
 st.markdown("Once the Orion pipeline is constructed, I fit the model to the data and predict anomalous segments. The data is output into a dataframe representing the start and end of the anomalous sequence. Using a for loop, I split the sequence back into its original discrete data points that make it up.")

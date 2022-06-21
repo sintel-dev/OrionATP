@@ -1,3 +1,4 @@
+from tkinter import BOTH
 import requests
 from datetime import datetime
 import csv
@@ -29,6 +30,7 @@ print(time, value, raw_df)
 #the difficult thing will be finding dates / times and the one metric you care about in the timeseries, then making it into a 2 column df
 
 standardized_time = raw_df[[value,time]] #remember that datetime needs to be changed to a variable that represents the time column
+selected = standardized_time.iloc[[-5, -4, -3, -2, -1]]
 #standardized_time["datetime"] = standardized_time[time].apply(lambda x: datetime.strptime(x, "%Y-%m-%d"))
 standardized_time[time] = pd.to_timedelta(standardized_time[time])
 standardized_time[time] = standardized_time[time].dt.total_seconds()
