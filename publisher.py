@@ -19,6 +19,9 @@ fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'],
                              marker = dict(color='red'),
                              name = 'detected_anomaly'))
 #fig.show() #graph figure with discrete anomalies highlighted in red
+st.header("End-to-End Workflow for Anomaly Detection using Orion")
+st.markdown("This is a visualization of the anomaly detection performed using the Orion library. When automated using GitHub Actions, this updates on a regular basis using the new data it acquires.")
+
 st.header("Building the Pipeline")
 st.markdown("Orion requires the data to be formatted in a very specific way, with the two columns of the dataframe being labelled 'timestamp' and 'value.' I set up the data to fit this format, then build a pipeline that doesn't vary much from the default ARIMA pipeline that's preprogrammed into the Orion library.")
 st.dataframe(selected)
@@ -41,6 +44,6 @@ st.markdown("Finally, I graph the data. I still need to familiarize myself with 
 
 st.plotly_chart(fig)
 
-st.header("Conclusions.")
+st.header("Conclusions")
 
 st.markdown("It's obviously difficult to draw any sort of conclusions based on just this data set, but it seems like the Orion ARIMA pipeline is detecting anomalous segments during certain times of drastic increase in price. Obviously this script will change based on the Orion model used and the data set. There's also far too many variables that weren't taken into account for us to be able to draw any definitive conclusions about causation based off this data.")
