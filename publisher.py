@@ -20,10 +20,10 @@ fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'],
                              name = 'detected_anomaly'))
 #fig.show() #graph figure with discrete anomalies highlighted in red
 st.header("End-to-End Workflow for Anomaly Detection using Orion")
-st.markdown("This is a visualization of the anomaly detection performed using the Orion library. When automated using GitHub Actions, this updates on a regular basis using the new data it acquires.")
+st.markdown("This is a visualization of the anomaly detection performed using the Orion library. When automated using GitHub Actions, this updates on a regular basis using the new data it acquires. In this Streamlit App, we will walk through at a broad level how we aggregate and analyze data using the Orion library.")
 
 st.header("Building the Pipeline")
-st.markdown("Orion requires the data to be formatted in a very specific way, with the two columns of the dataframe being labelled 'timestamp' and 'value.' I set up the data to fit this format, then build a pipeline that doesn't vary much from the default ARIMA pipeline that's preprogrammed into the Orion library.")
+st.markdown("Orion requires the data to be formatted in a very specific way, with the two columns of the dataframe being labelled 'timestamp' and 'value.' We set up the data to fit this format, then build a pipeline that doesn't vary much from the default ARIMA pipeline that's preprogrammed into the Orion library.")
 st.dataframe(selected)
 fig3 = go.Figure()
 fig3.add_trace(go.Scatter(x = final_df['timestamp'], y = final_df['value'],   #blue line is original data over time
@@ -31,9 +31,9 @@ fig3.add_trace(go.Scatter(x = final_df['timestamp'], y = final_df['value'],   #b
                              marker =dict(color='blue'),
                              name = 'original_signal'))
 st.plotly_chart(fig3)
-st.markdown("This is what the data looks like when visualized.")
+st.markdown("This is what the data looks like when visualized. Next we will try to detect any potential anomalies.")
 st.header("Detecting Anomalies")
-st.markdown("Once the Orion pipeline is constructed, I fit the model to the data to train it and predict anomalous segments. The anomaly data is output into a dataframe representing the start and end of the anomalous sequence. Using a for loop, I split the sequence back into its original discrete data points that make it up in order to graph more effectively. Below are the points within the anomalous segments detected along with a visualization on the graph.")
+st.markdown("Once the Orion pipeline is constructed, we fit the model to the data to train it and predict anomalous segments. The anomaly data is output into a dataframe representing the start and end of the anomalous sequence. Using a for loop, we split the sequence back into its original discrete data points that make it up in order to graph more effectively. Below are the points within the anomalous segments detected along with a visualization on the graph.")
 
 st.dataframe(detected_anomalies)
 
@@ -47,7 +47,7 @@ st.plotly_chart(fig2)
 st.markdown("As seen in the full data graphed earlier, the values tend to rise before falling a significant amount. Since the ARIMA model specifically uses a moving average, any sudden change will be detected as more anomalous. This must be the reason why the anomalous segments are detected during the greatest increases in the values of the data. If we find the dates corresponding with the timestamps, we can try to determine why anomalies were detected on those specific dates.")
 
 st.header("Graphing the Data")
-st.markdown("Finally, I graph the data. I still need to familiarize myself with plotly to create more effective graphs, but this basic graph seems to work for now. Discrete anomalous points are highlighted with red dots, while the timeseries data is graphed over time with the blue line.") 
+st.markdown("Finally, we graph the data. Depending on the type of data, plotly has different types of graphs of varying complexity, but this basic graph seems to work just fine for now. Discrete anomalous points are highlighted with red dots, while the timeseries data is graphed over time with the blue line.") 
 
 st.plotly_chart(fig)
 
