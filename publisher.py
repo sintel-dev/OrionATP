@@ -19,8 +19,8 @@ fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'],
                              marker = dict(color='red'),
                              name = 'detected_anomaly'))
 #fig.show() #graph figure with discrete anomalies highlighted in red
-st.header("End-to-End Workflow for Anomaly Detection using Orion")
-st.markdown("This is a visualization of the anomaly detection performed using the Orion library. When automated using GitHub Actions, this updates on a regular basis using the new data it acquires. In this Streamlit App, we will walk through at a broad level how we aggregate and analyze data using the Orion library.")
+st.header("End-to-End Workflow for Unsupervised Anomaly Detection using Orion")
+st.markdown("This is a visualization of the unsupervised anomaly detection performed using the Orion library. When automated using GitHub Actions, this updates on a regular basis using the new data it acquires. In this Streamlit App, we will walk through at a broad level how we aggregate and analyze data using the Orion library.")
 
 st.header("Building the Pipeline")
 st.markdown("Orion requires the data to be formatted in a very specific way, with the two columns of the dataframe being labelled 'timestamp' and 'value.' We set up the data to fit this format, then build a pipeline that doesn't vary much from the default ARIMA pipeline that's preprogrammed into the Orion library.")
