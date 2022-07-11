@@ -1,5 +1,6 @@
 # OrionATP
 Acquirer, Transformer, and Publisher for Data Analysis and Visualization using the Orion library in Python
+Created by Avi Shah
 
 Take time series data straight from API, detect anomalies using Orion library, and visualize using Streamlit. Scripts will run once a day as scheduled by the workflow for consistent analysis and progress tracking.
 
