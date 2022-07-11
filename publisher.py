@@ -9,6 +9,7 @@ from acquirer import original_time
 from trainer import detected_anomalies
 from trainer import anomalydata
 
+st.title("OrionATP")
 fig = go.Figure()
 
 # add the main values to the figure
