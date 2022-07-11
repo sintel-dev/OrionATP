@@ -6,6 +6,7 @@ _Created by Avi Shah_
 Take time series data straight from API, detect anomalies using Orion library, and visualize using Streamlit. Scripts will run once a day as scheduled by the workflow for consistent analysis and progress tracking.
 
 ##Getting Started:
+
 **Step 1:** Inpuut API Key and name of time and value metric in api.txt, in that precise order. This is the file that the acquisition script will read from in order to collect and aggregate the data successfully. **Note:** You will need to know the labels of the columns for your time and value metric in order for this workflow to run successfully. This code currently supports json and csv file types. If the API request returns a different file type or an extremely nested json file, this may not work correctly.
 
 **Step 2:** Input desired Pipeline and Hyperparameters into pipeline.json and hyperparameters.json respectively. This can simply be copy/pasted from Orion library's list of pipelines. These files exist so the pipeline and hyperparameters can be changed easily without having to edit the scripts themselves.
