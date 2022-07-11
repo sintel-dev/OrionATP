@@ -28,7 +28,7 @@ st.header("Building the Pipeline")
 st.markdown("Orion requires the data to be formatted in a very specific way, with the two columns of the dataframe being labelled 'timestamp' and 'value.' We set up the data to fit this format, then build a pipeline that doesn't vary much from the default ARIMA pipeline that's preprogrammed into the Orion library.")
 st.dataframe(selected)
 fig3 = go.Figure()
-fig3.add_trace(go.Scatter(x = original_time['time'], y = original_time['value'],   #blue line is original data over time
+fig3.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['value'],   #blue line is original data over time
                              mode = 'lines',
                              marker =dict(color='blue'),
                              name = 'original_signal'))
