@@ -3,8 +3,8 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as plt
 import streamlit.components.v1 as components
-from converter import final_df
-from converter import selected
+from acquirer import final_df
+from acquirer import selected
 from trainer import detected_anomalies
 from trainer import anomalydata
 
