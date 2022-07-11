@@ -11,8 +11,8 @@ Take time series data straight from API, detect anomalies using Orion library, a
 
 **Step 2:** Input desired Pipeline and Hyperparameters into pipeline.json and hyperparameters.json respectively. This can simply be copy/pasted from Orion library's list of pipelines. These files exist so the pipeline and hyperparameters can be changed easily without having to edit the scripts themselves.
 
-**Step 3:** When you fork this repo, deploy this app using https://streamlit.io/ and Python 3.7. We're currently trying to figure out if it is possible to omit this step.
+**Step 3:** When you fork this repo, deploy this app using https://streamlit.io/ and Python 3.7. There are fairly simple instructions on how to deploy an app on the Streamlit website. It's as easy as selecting a Github repo and choosing a Python version. We're currently trying to figure out if it is possible to omit this step, but as of now, the apps need to be deployed on streamlit in order to be viewed on Github Pages.
 
-**Step 4:** Go into your repository settings and enable GitHub Pages. This is so you don't have to use the streamlit link when trying to view the visualization results.
+**Step 4:** Go into your repository settings and enable GitHub Pages. This is so you don't have to use the streamlit link when trying to view the visualization results. **The following is very important:** If you want your code to be available on Github Pages as well as streamlit, you may have to make edits to the **index.html** file. This file will be specific to your app. The simplest thing to do is copy and paste the HTML source code directly from Streamlit by inspecting it through your browser.
 
 **Step 5:** Manually trigger the workflow or wait for it to trigger on schedule. You should be all set and able to view the results of your anomaly detection and visualization!
