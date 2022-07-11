@@ -2,6 +2,7 @@ import json
 import pandas as pd
 from orion import Orion
 from acquirer import final_df
+from acquirer import original_time
 
 
 #trainer
@@ -18,4 +19,4 @@ anomalydata = pd.DataFrame(columns = ["timestamp", "value"])
 for i in range(len(detected_anomalies.index)): #works for any number of anomalous segments
     start = detected_anomalies.iloc[i, 0]
     end = detected_anomalies.iloc[i, 1]
-    anomalydata = anomalydata.append(final_df[final_df["timestamp"].between(start, end)])
+    anomalydata = anomalydata.append(original_time[original_time["timestamp"].between(start, end)])
