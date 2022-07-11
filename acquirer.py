@@ -29,7 +29,8 @@ print(time, value, raw_df)
 #the difficult thing will be finding dates / times and the one metric you care about in the timeseries, then making it into a 2 column df
 
 standardized_time = raw_df[[value,time]] #remember that datetime needs to be changed to a variable that represents the time column
-original_time = raw_df[[value,time]] #a copy of the raw df for publisher purposes
+original_time = pd.DataFrame({"timestamp":standardized_time[time], "value": standardized_time[value]}) #a copy of the raw df for publisher purposes
+
 selected = standardized_time.iloc[[-5, -4, -3, -2, -1]]
 #standardized_time["datetime"] = standardized_time[time].apply(lambda x: datetime.strptime(x, "%Y-%m-%d"))
 standardized_time[time] = pd.to_timedelta(standardized_time[time])
@@ -37,4 +38,5 @@ standardized_time[time] = standardized_time[time].dt.total_seconds()
 
 final_df = pd.DataFrame({"timestamp":standardized_time[time], "value": standardized_time[value]}) #this line will need to be edited to change datetime and close, but is important
 print(final_df)
+original_time["seconds"] = final_df["timestamp"]
 #lastly the final dataframe needs to be sent to trainer.py to train the model
