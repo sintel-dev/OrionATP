@@ -13,7 +13,7 @@ st.title("OrionATP")
 fig = go.Figure()
 
 # add the main values to the figure
-fig.add_trace(go.Scatter(x = final_df['timestamp'], y = final_df['value'],   #blue line is original data over time
+fig.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['value'],   #blue line is original data over time
                              mode = 'lines',
                              marker =dict(color='blue'),
                              name = 'original_signal'))
