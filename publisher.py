@@ -29,8 +29,8 @@ st.markdown("Orion requires the data to be formatted in a very specific way, wit
 st.dataframe(selected)
 fig3 = go.Figure()
 fig3.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['value'],   #blue line is original data over time
-                             mode = 'lines',
-                             marker =dict(color='blue'),
+                             mode = 'lines+markers',
+                             marker =dict(color='blue', size=3),
                              name = 'original_signal'))
 st.plotly_chart(fig3)
 st.markdown("This is what the data looks like when visualized. Next we will try to detect any potential anomalies.")
@@ -42,8 +42,8 @@ st.dataframe(detected_anomalies)
 st.dataframe(anomalydata)
 
 fig2 = go.Figure()
-fig2.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = 'markers',
-                             marker = dict(color='red'),
+fig2.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = 'lines+markers',
+                             marker = dict(color='red', size=4),
                              name = 'detected_anomaly'))
 st.plotly_chart(fig2)
 st.markdown("As seen in the full data graphed earlier, the values tend to rise before falling a significant amount. Since the ARIMA model specifically uses a moving average, any sudden change will be detected as more anomalous. This must be the reason why the anomalous segments are detected during the greatest increases in the values of the data. If we find the dates corresponding with the timestamps, we can try to determine why anomalies were detected on those specific dates.")
