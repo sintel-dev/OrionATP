@@ -14,10 +14,9 @@ fig = go.Figure()
 
 # add the main values to the figure
 fig.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['value'],   #blue line is original data over time
-                             mode = 'lines+markers',
                              marker =dict(color='blue', size=3),
                              name = 'original_signal'))
-fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = 'lines+markers',
+fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], 
                              marker = dict(color='red', size=4),
                              name = 'detected_anomaly'))
 fig.update_layout(xaxis_title="timestamp", yaxis_title="value", width=1000)
@@ -44,7 +43,7 @@ st.dataframe(detected_anomalies)
 st.dataframe(anomalydata)
 
 fig2 = go.Figure()
-fig2.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = 'lines+markers',
+fig2.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'],
                              marker = dict(color='red', size=3),
                              name = 'detected_anomaly'))
 fig2.update_layout(xaxis_title="timestamp", yaxis_title="value", width=1000)
