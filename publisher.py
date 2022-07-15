@@ -15,11 +15,12 @@ fig = go.Figure()
 # add the main values to the figure
 fig.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['value'],   #blue line is original data over time
                              mode = 'lines',
-                             marker =dict(color='blue'),
+                             marker =dict(color='blue', size=3),
                              name = 'original_signal'))
 fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = 'markers',
-                             marker = dict(color='red'),
+                             marker = dict(color='red', size=4),
                              name = 'detected_anomaly'))
+fig.update_layout(xaxis_title="timestamp", yaxis_title="value", width=1000)
 #fig.show() #graph figure with discrete anomalies highlighted in red
 st.header("End-to-End Workflow for Unsupervised Anomaly Detection using Orion")
 st.markdown("This is a visualization of the unsupervised anomaly detection performed using the Orion library. When automated using GitHub Actions, this updates on a regular basis using the new data it acquires. In this Streamlit App, we will walk through at a broad level how we aggregate and analyze data using the Orion library.")
@@ -29,9 +30,10 @@ st.markdown("Orion requires the data to be formatted in a very specific way, wit
 st.dataframe(selected)
 fig3 = go.Figure()
 fig3.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['value'],   #blue line is original data over time
-                             mode = 'lines+markers',
-                             marker =dict(color='blue', size=3),
+                             mode = 'lines',
+                             marker =dict(color='blue'),
                              name = 'original_signal'))
+fig3.update_layout(xaxis_title="timestamp", yaxis_title="value", width=1000)
 st.plotly_chart(fig3)
 st.markdown("This is what the data looks like when visualized. Next we will try to detect any potential anomalies.")
 st.header("Detecting Anomalies")
@@ -43,8 +45,9 @@ st.dataframe(anomalydata)
 
 fig2 = go.Figure()
 fig2.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = 'lines+markers',
-                             marker = dict(color='red', size=4),
+                             marker = dict(color='red', size=3),
                              name = 'detected_anomaly'))
+fig2.update_layout(xaxis_title="timestamp", yaxis_title="value", width=1000)
 st.plotly_chart(fig2)
 st.markdown("As seen in the full data graphed earlier, the values tend to rise before falling a significant amount. Since the ARIMA model specifically uses a moving average, any sudden change will be detected as more anomalous. This must be the reason why the anomalous segments are detected during the greatest increases in the values of the data. If we find the dates corresponding with the timestamps, we can try to determine why anomalies were detected on those specific dates.")
 
