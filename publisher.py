@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime as dt
 import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as plt
@@ -19,6 +20,16 @@ fig.add_trace(go.Scatter(x = original_time['timestamp'], y = original_time['valu
 fig.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value'], mode = "lines+markers",
                              marker = dict(color='red', size=4),
                              name = 'detected_anomaly'))
+for i in range(len(detected_anomalies.index)):
+  fig.add_shape(
+        type="rect",
+        x0=dt.datetime.fromtimestamp(detected_anomalies.at[i, "start"]),
+        x1=dt.datetime.fromtimestamp(detected_anomalies.at[i, "end"]),
+        y0=0,
+        y1=1300,
+        fillcolor="red",
+        opacity=0.2,
+    )
 fig.update_layout(xaxis_title="timestamp", yaxis_title="value", width=800)
 #fig.show() #graph figure with discrete anomalies highlighted in red
 st.header("End-to-End Workflow for Unsupervised Anomaly Detection using Orion")
@@ -48,12 +59,14 @@ fig2.add_trace(go.Scatter(x = anomalydata['timestamp'], y = anomalydata['value']
                              name = 'detected_anomaly'))
 fig2.update_layout(xaxis_title="timestamp", yaxis_title="value")
 st.plotly_chart(fig2)
+st.text_area(label="Type any comments on the anomaly data in here!")
 st.markdown("As seen in the full data graphed earlier, the values tend to rise before falling a significant amount. Since the ARIMA model specifically uses a moving average, any sudden change will be detected as more anomalous. This must be the reason why the anomalous segments are detected during the greatest increases in the values of the data. If we find the dates corresponding with the timestamps, we can try to determine why anomalies were detected on those specific dates.")
 
 st.header("Graphing the Data")
 st.markdown("Finally, we graph the data. Depending on the type of data, plotly has different types of graphs of varying complexity, but this basic graph seems to work just fine for now. Discrete anomalous points are highlighted with red dots, while the timeseries data is graphed over time with the blue line.") 
 
 st.plotly_chart(fig)
+st.text_area(label="Type any comments on the full data in here!")
 
 st.header("Conclusions")
 
