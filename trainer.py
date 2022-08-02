@@ -12,7 +12,12 @@ pipeline = json.load(json_pipeline)
 json_hyperparameters = open("hyperparameters.json", "r")
 hp = json.load(json_hyperparameters)
 
+#if (no saved file):
 orion_model = Orion(pipeline=pipeline, hyperparameters = hp)
+# else:
+# orion_model = Orion.load(INSERT_PICKLE_PATH)
+# the above code, while not yet implemented due to bugtesting, allows for the user to access a previously created Orion instance 
+# and update it with the new data instead of retraining the entire model.
 detected_anomalies = orion_model.fit_detect(final_df)
 
 anomalydata = pd.DataFrame(columns = ["timestamp", "value"])
